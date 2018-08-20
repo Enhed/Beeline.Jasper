@@ -47,8 +47,6 @@ namespace Beeline.Jasper
             {
                 resp = Search(iccid, fromDate, toDate, pageSize, pageNumber, accountId).Result;
 
-                // Console.WriteLine($"[GetAllDetails]: [{iccid}] page x{page} = x[{resp.Ids.Length}] ({resp.Ids.CreateString(",")})");
-
                 foreach(var device in resp.Ids.Select(id => GetDetails(id).Result))
                 {
                     yield return device;
