@@ -24,7 +24,7 @@ namespace Beeline.Jasper
         public string RatePlan;
 
         [JsonProperty("CommunicationPlan")]
-        public string communicationPlan;
+        public string CommunicationPlan;
 
         [JsonProperty("customer")]
         public object Customer;
