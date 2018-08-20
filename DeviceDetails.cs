@@ -1,30 +1,70 @@
 using System;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Beeline.Jasper.Http;
 
 namespace Beeline.Jasper
 {
-    public sealed class DeviceDetails
+    public class Device
     {
         [JsonProperty("iccid")]
-        public string ICCID;
-
-        [JsonProperty("imsi")]
-        public string IMSI;
-
-        [JsonProperty("msisdn")]
-        public string MSISDN;
-
-        [JsonProperty("imei")]
-        public string IMEI;
+        public long ICCID;
 
         [JsonProperty("status")]
-        public string Status;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Status Status;
 
         [JsonProperty("ratePlan")]
         public string RatePlan;
 
         [JsonProperty("CommunicationPlan")]
         public string CommunicationPlan;
+
+        public Task<DeviceDetails> GetDetails(string key)
+            => new DeviceDetailsRequest(key, ICCID).GetResponse();
+
+        public Task<SessionDetails> GetSessionDetails(string key)
+            => new SessionDetailsRequest(key, ICCID).GetResponse();
+
+
+        [JsonIgnore]
+        public bool IsActive => Status == Status.Activated || Status == Status.ActivationReady;
+    }
+
+    public enum Status
+    {
+        [EnumMember(Value="ACTIVATION_READY")]
+        ActivationReady,
+
+        [EnumMember(Value="DEACTIVATED")]
+        Deactivated,
+
+        [EnumMember(Value="ACTIVATED")]
+        Activated,
+
+        [EnumMember(Value="RETIRED")]
+        Retired,
+
+        [EnumMember(Value="PURGED")]
+        Purget
+    }
+
+    public sealed class DeviceDetails : Device
+    {
+        [JsonProperty("imsi")]
+        public string IMSI;
+
+        [JsonProperty("msisdn")]
+        public string MSISDN;
+
+        [JsonIgnore]
+        public string Phone => $"+{MSISDN}";
+
+
+        [JsonProperty("imei")]
+        public string IMEI;
 
         [JsonProperty("customer")]
         public object Customer;
@@ -33,7 +73,7 @@ namespace Beeline.Jasper
         public object EndConsumerId;
 
         [JsonProperty("dateActivated")]
-        public DateTime DateActivated;
+        public DateTime? DateActivated;
 
         [JsonProperty("dateAdded")]
         public DateTime DateAdded;
