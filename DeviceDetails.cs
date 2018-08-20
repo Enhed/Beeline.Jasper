@@ -6,38 +6,90 @@ namespace Beeline.Jasper
     public sealed class DeviceDetails
     {
         [JsonProperty("iccid")]
-        public string Iccid;
+        public string ICCID;
 
         [JsonProperty("imsi")]
-        public string Imsi;
+        public string IMSI;
 
         [JsonProperty("msisdn")]
-        public string Msisdn;
-        public string imei;
-        public string status;
-        public string ratePlan;
+        public string MSISDN;
+
+        [JsonProperty("imei")]
+        public string IMEI;
+
+        [JsonProperty("status")]
+        public string Status;
+
+        [JsonProperty("ratePlan")]
+        public string RatePlan;
+
+        [JsonProperty("CommunicationPlan")]
         public string communicationPlan;
-        public object customer;
-        public object endConsumerId;
-        public DateTime dateActivated;
-        public DateTime dateAdded;
-        public DateTime dateUpdated;
-        public DateTime dateShipped;
-        public string accountId;
-        public object fixedIPAddress;
-        public string accountCustom1;
-        public string accountCustom2;
-        public string accountCustom3;
-        public string accountCustom4;
-        public string accountCustom5;
-        public string accountCustom6;
-        public string accountCustom7;
-        public string accountCustom8;
-        public string accountCustom9;
-        public string accountCustom10;
-        public object simNotes;
-        public object deviceID;
-        public string modemID;
-        public string globalSimType;
+
+        [JsonProperty("customer")]
+        public object Customer;
+
+        [JsonProperty("endConsumerId")]
+        public object EndConsumerId;
+
+        [JsonProperty("dateActivated")]
+        public DateTime DateActivated;
+
+        [JsonProperty("dateAdded")]
+        public DateTime DateAdded;
+
+        [JsonProperty("dateUpdated")]
+        public DateTime DateUpdated;
+
+        [JsonProperty("dateShipped")]
+        public DateTime DateShipped;
+
+        [JsonProperty("accountId")]
+        public string AccountId;
+
+        [JsonProperty("fixedIPAddress")]
+        public object FixedIPAddress;
+
+        [JsonProperty("AccountCustom1")]
+        public string AccountCustom1;
+
+        [JsonProperty("accountCustom2")]
+        public string AccountCustom2;
+
+        [JsonProperty("accountCustom3")]
+        public string AccountCustom3;
+
+        [JsonProperty("accountCustom4")]
+        public string AccountCustom4;
+
+        [JsonProperty("accountCustom5")]
+        public string AccountCustom5;
+
+        [JsonProperty("accountCustom6")]
+        public string AccountCustom6;
+
+        [JsonProperty("accountCustom7")]
+        public string AccountCustom7;
+
+        [JsonProperty("accountCustom8")]
+        public string AccountCustom8;
+
+        [JsonProperty("accountCustom9")]
+        public string AccountCustom9;
+
+        [JsonProperty("accountCustom10")]
+        public string AccountCustom10;
+
+        [JsonProperty("simNotes")]
+        public object SimNotes;
+
+        [JsonProperty("deviceID")]
+        public object DeviceID;
+
+        [JsonProperty("modemID")]
+        public string ModemID;
+
+        [JsonProperty("globalSimType")]
+        public string GlobalSimType;
     }
 }
