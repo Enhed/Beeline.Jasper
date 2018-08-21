@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Beeline.Jasper.Http;
+using System.Linq;
+using SharpExtension;
 
 namespace Beeline.Jasper
 {
@@ -65,6 +67,12 @@ namespace Beeline.Jasper
 
         [JsonProperty("imei")]
         public string IMEI;
+
+
+        [JsonIgnore]
+        public string RelativeIMEI
+            => IMEI.Take(14).CreateString();
+
 
         [JsonProperty("customer")]
         public object Customer;
